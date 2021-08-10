@@ -93,6 +93,7 @@ namespace Asp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult Edit(usuario editUser)
         {
             try

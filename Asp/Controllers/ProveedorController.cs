@@ -7,25 +7,27 @@ using Asp.Models;
 
 namespace Asp.Controllers
 {
-    public class ClienteController : Controller
+    public class ProveedorController : Controller
     {
-        // GET: Cliente
+        // GET: Proveedor
         public ActionResult Index()
         {
-            using(var db = new inventario2021Entities())
+
+            using (var db = new inventario2021Entities())
             {
-                return View(db.cliente.ToList());
+                return View(db.proveedor.ToList());
             }
-            
         }
+
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create(cliente cliente)
+        public ActionResult Create(proveedor provider)
         {
             if (!ModelState.IsValid)
                 return View();
@@ -33,12 +35,13 @@ namespace Asp.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    db.cliente.Add(cliente);
+                    db.proveedor.Add(provider);
                     db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error" + ex);
                 return View();
@@ -49,74 +52,70 @@ namespace Asp.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                var findCliente = db.cliente.Find(id);
-                return View(findCliente);
+                var findProvider = db.proveedor.Find(id);
+                return View(findProvider);
             }
-
         }
 
         public ActionResult Delete(int id)
         {
-
-
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    var findCliente = db.cliente.Find(id);
-                    db.cliente.Remove(findCliente);
+                    var findProvider = db.proveedor.Find(id);
+                    db.proveedor.Remove(findProvider);
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
-            }
 
+            }
         }
 
         public ActionResult Edit(int id)
         {
-
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    cliente findClient = db.cliente.Where(a => a.id == id).FirstOrDefault();
-                    return View(findClient);
+                    proveedor findProvider = db.proveedor.Where(a => a.id == id).FirstOrDefault();
+                    return View(findProvider);
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
             }
-
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit(cliente editCliente)
+        public ActionResult Edit(proveedor editProvider)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    cliente Client = db.cliente.Find(editCliente.id);
+                    proveedor provider = db.proveedor.Find(editProvider);
 
-                    Client.nombre = editCliente.nombre;
-                    Client.documento = editCliente.documento;
-                    Client.email = editCliente.email;
+                    provider.nombre = editProvider.nombre;
+                    provider.direccion = editProvider.direccion;
+                    provider.telefono = editProvider.telefono;
+                    provider.nombre_contacto = editProvider.nombre_contacto;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
