@@ -27,7 +27,7 @@ namespace Asp.Controllers
 
         public ActionResult Create(cliente cliente)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View();
             try
             {
@@ -57,14 +57,17 @@ namespace Asp.Controllers
 
         public ActionResult Delete(int id)
         {
-            using (var db = new inventario2021Entities())
+            
             {
                 try
                 {
-                    var findCliente = db.cliente.Find();
-                    db.cliente.Remove(findCliente);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    using (var db = new inventario2021Entities())
+                    {
+                        var findCliente = db.cliente.Find(id);
+                        db.cliente.Remove(findCliente);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -76,33 +79,36 @@ namespace Asp.Controllers
 
         public ActionResult Edit(int id)
         {
-            using (var db = new inventario2021Entities())
+
+            try
             {
-                try
+                using (var db = new inventario2021Entities())
                 {
-                    cliente findUser = db.cliente.Where(a => a.id == id).FirstOrDefault();
-                    return View(findUser);
-                }
-                catch(Exception ex)
-                {
-                    ModelState.AddModelError("", "Error " + ex);
-                    return View();
+                    cliente findClient = db.cliente.Where(a => a.id == id).FirstOrDefault();
+                    return View(findClient);
                 }
             }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult Edit(cliente editCliente)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    cliente user = db.cliente.Find();
+                    cliente Client = db.cliente.Find(editCliente.id);
 
-                    user.nombre = editCliente.nombre;
-                    user.documento = editCliente.documento;
-                    user.email = editCliente.documento;
+                    Client.nombre = editCliente.nombre;
+                    Client.documento = editCliente.documento;
+                    Client.email = editCliente.email;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
