@@ -10,6 +10,7 @@ namespace Asp.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
+        // Conexión a la base de datos
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
