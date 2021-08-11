@@ -104,7 +104,7 @@ namespace Asp.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    proveedor provider = db.proveedor.Find(editProvider);
+                    proveedor provider = db.proveedor.Find(editProvider.id);
 
                     provider.nombre = editProvider.nombre;
                     provider.direccion = editProvider.direccion;

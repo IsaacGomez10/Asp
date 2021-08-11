@@ -106,7 +106,7 @@ namespace Asp.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    roles rol = db.roles.Find(editRol);
+                    roles rol = db.roles.Find(editRol.id);
 
                     rol.descripcion = editRol.descripcion;
 
