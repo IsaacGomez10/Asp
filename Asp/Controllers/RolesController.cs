@@ -57,27 +57,6 @@ namespace Asp.Controllers
             }
         }
 
-        public ActionResult Delate(int id)
-        {
-            try
-            {
-                using (var db = new inventario2021Entities())
-                {
-                    var findRol = db.roles.Find(id);
-                    db.roles.Remove(findRol);
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "Error " + ex);
-                return View();
-
-            }
-        }
-
         public ActionResult Edit(int id)
         {
             try
@@ -111,6 +90,27 @@ namespace Asp.Controllers
                     rol.descripcion = editRol.descripcion;
 
                     db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                using (var db = new inventario2021Entities())
+                {
+                    var findRol = db.roles.Find(id);
+                    db.roles.Remove(findRol);
+                    db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
             }

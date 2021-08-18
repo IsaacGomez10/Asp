@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Asp.Models.usuario>
+﻿@model IEnumerable<Asp.Models.compra>
 
 @{
     ViewBag.Title = "Index";
@@ -12,19 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.fecha)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellido)
+            @Html.DisplayNameFor(model => model.total)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_nacimiento)
+            @Html.DisplayNameFor(model => model.cliente.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
+            @Html.DisplayNameFor(model => model.usuario.nombre)
         </th>
         <th></th>
     </tr>
@@ -33,19 +30,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.apellido)
+                @Html.DisplayFor(modelItem => item.total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+                @Asp.Controllers.CompraController.NombreCliente(item.id_cliente)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.password)
+                @Asp.Controllers.CompraController.NombreUsuario(item.id_usuario)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
@@ -56,4 +50,3 @@
     }
 
 </table>
-

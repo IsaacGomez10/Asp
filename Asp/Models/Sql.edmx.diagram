@@ -8,8 +8,8 @@
         <EntityTypeShape EntityType="inventario2021Model.cliente" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="inventario2021Model.compra" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="inventario2021Model.producto" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="inventario2021Model.producto_compra" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="inventario2021Model.producto_imagen" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventario2021Model.producto_compra" Width="2.125" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="inventario2021Model.producto_imagen" Width="1.75" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="inventario2021Model.proveedor" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="inventario2021Model.roles" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="inventario2021Model.usuario" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />

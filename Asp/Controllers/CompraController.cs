@@ -7,15 +7,46 @@ using Asp.Models;
 
 namespace Asp.Controllers
 {
-    public class UsuarioController : Controller
+    public class CompraController : Controller
     {
-        // GET: Usuario
-        // Conexión a la base de datos
+        // GET: Compra
         public ActionResult Index()
         {
             using (var db = new inventario2021Entities())
             {
-                return View(db.usuario.ToList());
+                return View(db.compra.ToList());
+            }
+        }
+
+        public static string NombreCliente(int idClient)
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return db.cliente.Find(idClient).nombre;
+            }
+        }
+        
+        public ActionResult ListaClientes()
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return PartialView(db.cliente.ToList());
+            }
+        }
+
+        public static string NombreUsuario(int idUser)
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return db.usuario.Find(idUser).nombre;
+            }
+        }
+
+        public ActionResult ListaUsuarios()
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return PartialView(db.usuario.ToList());
             }
         }
 
@@ -27,32 +58,36 @@ namespace Asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create(usuario usuario)
+        public ActionResult Create(compra Buy)
         {
             if (!ModelState.IsValid)
                 return View();
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    db.usuario.Add(usuario);
+                    db.compra.Add(Buy);
                     db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error" + ex);
                 return View();
             }
 
+
+
         }
-    
+
         public ActionResult Details(int id)
         {
             using(var db = new inventario2021Entities())
             {
-                var findUser = db.usuario.Find(id);
-                return View(findUser);
+                var findBuy = db.compra.Find(id);
+                return View(findBuy);
             }
         }
 
@@ -60,10 +95,10 @@ namespace Asp.Controllers
         {
             try
             {
-                using (var db = new inventario2021Entities())
+                using(var db = new inventario2021Entities())
                 {
-                    usuario findUser = db.usuario.Where(a => a.id == id).FirstOrDefault();
-                    return View(findUser);
+                    compra findBuy = db.compra.Where(a => a.id == id).FirstOrDefault();
+                    return View(findBuy);
                 }
             }
             catch(Exception ex)
@@ -76,19 +111,18 @@ namespace Asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit(usuario editUser)
+        public ActionResult Edit(compra editCompra)
         {
             try
             {
                 using(var db = new inventario2021Entities())
                 {
-                    usuario user = db.usuario.Find(editUser.id);
+                    compra buy = db.compra.Find(editCompra.id);
 
-                    user.nombre = editUser.nombre;
-                    user.apellido = editUser.apellido;
-                    user.email = editUser.email;
-                    user.fecha_nacimiento = editUser.fecha_nacimiento;
-                    user.password = editUser.password;
+                    buy.fecha = editCompra.fecha;
+                    buy.total = editCompra.total;
+                    buy.id_cliente = editCompra.id_cliente;
+                    buy.id_usuario = editCompra.id_usuario;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -105,17 +139,18 @@ namespace Asp.Controllers
         {
             try
             {
-                using (var db = new inventario2021Entities())
+                using(var db = new inventario2021Entities())
                 {
-                    var findUser = db.usuario.Find(id);
-                    db.usuario.Remove(findUser);
+                    compra buy = db.compra.Find(id);
+                    db.compra.Remove(buy);
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Error " + ex);
+                ModelState.AddModelError("", "Error" + ex);
                 return View();
             }
         }
