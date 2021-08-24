@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Aplicación de Isaac B)", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Aplicación de Isaac :D", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,19 +26,29 @@
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Cruds
-                            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                            Tablas
+                            <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span>
 
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
-                            <li>@Html.ActionLink("Producto", "Index", "Producto")</li>
                             <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
                             <li>@Html.ActionLink("Proveedor", "Index", "Proveedor")</li>
                             <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
-                            <li>@Html.ActionLink("Producto Imagen","Index","ProductoImagen")</li>
-                            <li>@Html.ActionLink("Compras","Index","Compra")</li>
-                            <li>@Html.ActionLink("Rol de Usuario","Index","UsuarioRol")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Tablas Foraneas
+                            <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+                            <li>@Html.ActionLink("Producto Imagen", "Index", "ProductoImagen")</li>
+                            <li>@Html.ActionLink("Compras", "Index", "Compra")</li>
+                            <li>@Html.ActionLink("Rol de Usuario", "Index", "UsuarioRol")</li>
+                            <li>@Html.ActionLink("Producto Comprado", "Index", "ProductoCompra")</li>
                         </ul>
                     </li>
                 </ul>

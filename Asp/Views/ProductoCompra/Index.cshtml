@@ -1,27 +1,24 @@
-﻿@model IEnumerable<Asp.Models.proveedor>
+﻿@model IEnumerable<Asp.Models.producto_compra>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Lista Proveedor</h2>
+<h2>Lista Producto Compra</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo Proveedor", "Create")
+    @Html.ActionLink("Crear Nuevo Producto Compra", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
+            Cantidad
+        </th>
+        <th>
+            Id
+        </th>
+        <th>
             Nombre
-        </th>
-        <th>
-            Dirección
-        </th>
-        <th>
-            Teléfono
-        </th>
-        <th>
-            Nombre Contacto
         </th>
         <th></th>
     </tr>
@@ -30,16 +27,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nombre)
+                @Html.DisplayFor(modelItem => item.cantidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.direccion)
+                @Asp.Controllers.ProductoCompraController.IdCompra(item.id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre_contacto)
+                @Asp.Controllers.ProductoCompraController.NombreProducto(item.id_producto)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.id }) |

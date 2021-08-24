@@ -4,24 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista Compras</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva Compra", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fecha)
+            Fecha
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.total)
+            Total
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cliente.nombre)
+            Nombre Cliente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.usuario.nombre)
+            Nombre Usuario
         </th>
         <th></th>
     </tr>
@@ -42,9 +42,9 @@
                 @Asp.Controllers.CompraController.NombreUsuario(item.id_usuario)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "linkDelete" })
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "linkDelete" })
             </td>
         </tr>
     }

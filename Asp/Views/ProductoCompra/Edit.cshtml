@@ -1,4 +1,4 @@
-﻿@model Asp.Models.producto_imagen
+﻿@model Asp.Models.producto_compra
 
 @{
     ViewBag.Title = "Edit";
@@ -11,16 +11,16 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Producto Imagen</h4>
+        <h4>Producto Compra</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="imagen">Imagen</label>
+            <label class="control-label col-md-2" for="id_compra">Id Compra</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
+                @Html.Action("ListaCompras")
+                @Html.ValidationMessageFor(model => model.id_compra, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -29,6 +29,14 @@
             <div class="col-md-10">
                 @Html.Action("ListaProductos")
                 @Html.ValidationMessageFor(model => model.id_producto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="cantidad">Cantidad</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>producto</h4>
+    <h4>Producto</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+            <label class="control-label col-md-2" for="nombre">Nombre</label>
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.percio_unitario)
+            <label class="control-label col-md-2" for="percio_unitario">Precio Unitario</label>
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
+            <label class="control-label col-md-2" for="descripcion">Descripción</label>
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cantidad)
+            <label class="control-label col-md-2" for="cantidad">Cantidad</label>
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.proveedor.nombre)
+            <label class="control-label col-md-2" for="id_proveedor">Id Proveedor</label>
         </dt>
         <dd>
             @Asp.Controllers.ProductoController.NombreProveedor(Model.id_proveedor)
@@ -52,6 +52,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Regresar a Lista", "Index")
 </p>

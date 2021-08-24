@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Registrar Nuevo</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -33,13 +33,13 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="fecha_nacimiento">Fecha Nacimiento</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_nacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="form-control text-box single-line" data-val="true" data-val-date="El campo fecha_nacimiento debe ser una fecha." data-val-required="El campo fecha_nacimiento es obligatorio." id="fecha_nacimiento" name="fecha_nacimiento" type="date" value="">
                 @Html.ValidationMessageFor(model => model.fecha_nacimiento, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="email">Correo</label>
+            <label class="control-label col-md-2" for="email">Email</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @type="email" } })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })

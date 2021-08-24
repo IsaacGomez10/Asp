@@ -7,46 +7,45 @@ using Asp.Models;
 
 namespace Asp.Controllers
 {
-    public class UsuarioRolController : Controller
+    public class ProductoCompraController : Controller
     {
-        // GET: UsuarioRol
+        // GET: ProductoCompra
         public ActionResult Index()
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return View(db.usuariorol.ToList());
-            }
-        }
-
-        public static string NombreUsuario(int idUser)
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return db.usuario.Find(idUser).nombre;
-            }
-        }
-
-        public ActionResult ListaUsuarios()
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return PartialView(db.usuario.ToList());
-            }
-        }
-
-        public static string NombreRol(int idRol)
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return db.roles.Find(idRol).descripcion;
-            }
-        }
-
-        public ActionResult DescripcionRol()
         {
             using (var db = new inventario2021Entities())
             {
-                return PartialView(db.roles.ToList());
+                return View(db.producto_compra.ToList());
+            }
+        }
+        public static string NombreProducto(int idProduct)
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return db.producto.Find(idProduct).nombre;
+            }
+        }
+
+        public ActionResult ListaProductos()
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return PartialView(db.producto.ToList());
+            }
+        }
+
+        public static int IdCompra(int idBuy)
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return db.producto_compra.Find(idBuy).id_compra;
+            }
+        }
+
+        public ActionResult ListaCompras()
+        {
+            using (var db = new inventario2021Entities())
+            {
+                return PartialView(db.compra.ToList());
             }
         }
 
@@ -57,22 +56,23 @@ namespace Asp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
-        public ActionResult Create (usuariorol newUserRol)
+
+        public ActionResult Create(producto_compra PdBuy)
         {
             if (!ModelState.IsValid)
                 return View();
+
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    db.usuariorol.Add(newUserRol);
+                    db.producto_compra.Add(PdBuy);
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
@@ -81,10 +81,10 @@ namespace Asp.Controllers
 
         public ActionResult Details(int id)
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
-                var findUserRol = db.usuariorol.Find(id);
-                return View(findUserRol);
+                var findPdBuy = db.producto_compra.Find(id);
+                return View(findPdBuy);
             }
         }
 
@@ -94,11 +94,11 @@ namespace Asp.Controllers
             {
                 using (var db = new inventario2021Entities())
                 {
-                    usuariorol findUserRol = db.usuariorol.Where(a => a.id == id).FirstOrDefault();
-                    return View(findUserRol);
+                    producto_compra findPdBuy = db.producto_compra.Where(a => a.id == id).FirstOrDefault();
+                    return View(findPdBuy);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
@@ -108,16 +108,17 @@ namespace Asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit(usuariorol editUserRol)
+        public ActionResult Edit(producto_compra editPdBuy)
         {
             try
             {
-                using(var db = new inventario2021Entities())
+                using (var db = new inventario2021Entities())
                 {
-                    usuariorol rol = db.usuariorol.Find(editUserRol.id);
+                    producto_compra Buy = db.producto_compra.Find(editPdBuy.id);
 
-                    rol.idRol = editUserRol.idRol;
-                    rol.idUsuario = editUserRol.idUsuario;
+                    Buy.id = editPdBuy.id;
+                    Buy.id_producto = editPdBuy.id_producto;
+                    Buy.cantidad = editPdBuy.cantidad;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -130,20 +131,20 @@ namespace Asp.Controllers
             }
         }
 
-        public ActionResult Delete (int id)
+        public ActionResult Delete(int id)
         {
             try
             {
                 using (var db = new inventario2021Entities())
                 {
-                    usuariorol rol = db.usuariorol.Find(id);
-                    db.usuariorol.Remove(rol);
+                    producto_compra Buy = db.producto_compra.Find(id);
+                    db.producto_compra.Remove(Buy);
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
