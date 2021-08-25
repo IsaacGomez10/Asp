@@ -49,9 +49,15 @@
                             <li>@Html.ActionLink("Producto Imagen", "Index", "ProductoImagen")</li>
                             <li>@Html.ActionLink("Compras", "Index", "Compra")</li>
                             <li>@Html.ActionLink("Rol de Usuario", "Index", "UsuarioRol")</li>
-                            <li>@Html.ActionLink("Producto Comprado", "Index", "ProductoCompra")</li>
+                            <li>@Html.ActionLink("Producto Compra", "Index", "ProductoCompra")</li>
                         </ul>
                     </li>
+                    
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Usuario")</li>
+                        }
+
                 </ul>
             </div>
         </div>

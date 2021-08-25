@@ -9,6 +9,7 @@ namespace Asp.Controllers
 {
     public class ProductoImagenController : Controller
     {
+        [Authorize]
         // GET: ProducImg
         public ActionResult Index()
         {
@@ -22,7 +23,7 @@ namespace Asp.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                return db.proveedor.Find(idProduct).nombre;
+                return db.producto.Find(idProduct).nombre;
             }
         }
 

@@ -9,6 +9,7 @@ namespace Asp.Controllers
 {
     public class ProductoCompraController : Controller
     {
+        [Authorize]
         // GET: ProductoCompra
         public ActionResult Index()
         {

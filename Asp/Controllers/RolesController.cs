@@ -9,6 +9,7 @@ namespace Asp.Controllers
 {
     public class RolesController : Controller
     {
+        [Authorize]
         // GET: Roles
         public ActionResult Index()
         {
