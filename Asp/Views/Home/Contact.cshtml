@@ -1,17 +1,24 @@
 ﻿@{
     ViewBag.Title = "Contact";
+    Layout = "~/View/Shared/Plantilla.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@section textoParrafo{
+    hola buen dia
+    }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+@{ 
+    var numero = 123;
+    string nombre = "nombre";
+}
+
+<p>@numero</p>
+<p>@nombre</p>
+<br />
+@if (numero > 100)
+{
+    <h3>numero mayor</h3>
+} else 
+{
+    <h3>numero menor</h3>
+}

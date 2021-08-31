@@ -159,6 +159,7 @@
     <Compile Include="Models\proveedor.cs">
       <DependentUpon>Sql.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Reporte.cs" />
     <Compile Include="Models\roles.cs">
       <DependentUpon>Sql.tt</DependentUpon>
     </Compile>
@@ -284,6 +285,8 @@
     <Content Include="Views\ProductoCompra\Edit.cshtml" />
     <Content Include="Views\ProductoCompra\Details.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Home\Plantilla.cshtml" />
+    <Content Include="Views\Producto\Reporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
