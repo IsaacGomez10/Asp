@@ -297,6 +297,8 @@
     <Content Include="Views\Home\Plantilla.cshtml" />
     <Content Include="Views\Producto\Reporte.cshtml" />
     <Content Include="Views\Compra\ReporteCompra.cshtml" />
+    <Content Include="Views\Producto\ReportePdf.cshtml" />
+    <Content Include="Views\Compra\ReporteCompraPdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

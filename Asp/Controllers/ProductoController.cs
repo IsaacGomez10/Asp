@@ -166,10 +166,35 @@ namespace Asp.Controllers
             }
         }
 
+        //Copia que se Descargara
+        public ActionResult ReportePdf()
+        {
+            try
+            {
+                var db = new inventario2021Entities();
+                var query = from tabProveedor in db.proveedor
+                            join tabProducto in db.producto on tabProveedor.id equals tabProducto.id_proveedor
+                            select new Reporte
+                            {
+                                nombreProveedor = tabProveedor.nombre,
+                                telefonoProveedor = tabProveedor.telefono,
+                                direccionProveedor = tabProveedor.direccion,
+                                nombreProducto = tabProducto.nombre,
+                                precioProducto = tabProducto.percio_unitario
+                            };
+
+                return View(query);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
 
         public ActionResult Descarga()
         {
-            return new ActionAsPdf("Reporte") { FileName = "Reporte_Producto.pdf" };
+            return new ActionAsPdf("ReportePdf") { FileName = "Reporte_Producto.pdf" };
         }
     }
 }
