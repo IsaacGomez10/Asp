@@ -11,7 +11,7 @@ namespace Asp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class proveedor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +21,17 @@ namespace Asp.Models
         }
     
         public int id { get; set; }
+
+        [Required]
         public string nombre { get; set; }
+
+        [Required]
         public string direccion { get; set; }
+
+        [Required]
         public string telefono { get; set; }
+
+        [Required]
         public string nombre_contacto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
