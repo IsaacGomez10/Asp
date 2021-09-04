@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Asp.Models.ReporteCompra>
-    @{ 
-        ViewBag.Title = "Reporte";
-    }
+@{
+    ViewBag.Title = "Reporte";
+}
 
 <h2>Reporte Compra</h2>
 
@@ -14,18 +14,19 @@
         <th>Total compra</th>
         <th>Atendido por</th>
     </tr>
-    @foreach(var item in Model)
-            {
-<tr>
-    <td>@Html.DisplayFor(modelItem => item.fechaCompra)</td>
-    <td>@Html.DisplayFor(modelItem => item.nombreCliente)</td>
-    <td>@Html.DisplayFor(modelItem => item.cantidadProdctComp)</td>
-    <td>@Html.DisplayFor(modelItem => item.totalCompra)</td>
-    <td>@Html.DisplayFor(modelItem => item.nombreUsuario)</td>
-</tr>
-            }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.fechaCompra)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombreCliente)</td>
+            <td>@Html.DisplayFor(modelItem => item.cantidadProdctComp)</td>
+            <td>@Html.DisplayFor(modelItem => item.totalCompra)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombreUsuario)</td>
+        </tr>
+    }
 </table>
-
+<img  src="https://i.pinimg.com/736x/27/b6/a7/27b6a769debf93bdcb61dd1a3d982cad.jpg" height="300px" width="300px"/>
 <div>
-    @Html.ActionLink("Regresar a Lista", "Index")
+    @Html.ActionLink("Regresar a Lista", "Index") |
+    @Html.ActionLink("Descargar Reporte", "Descarga")
 </div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
+using Rotativa;
 
 namespace Asp.Controllers
 {
@@ -187,6 +188,11 @@ namespace Asp.Controllers
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
             }
+        }
+
+        public ActionResult Descarga()
+        {
+            return new ActionAsPdf("ReporteCompra") { FileName = "Reporte_Compra.pdf" };
         }
     }
 }
