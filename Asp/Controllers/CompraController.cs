@@ -190,7 +190,7 @@ namespace Asp.Controllers
             }
         }
 
-        //Reporte copia para descarga
+        //Copia que se Descargara
         public ActionResult ReporteCompraPdf()
         {
             try
