@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Asp.Models.producto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
 }
 
 <h2>Lista Producto</h2>
@@ -56,6 +56,9 @@
 
 </table>
 
+<div>
+    @Html.ActionLink("Reporte de Producto", "Index", "Producto/Reporte")
+</div>
 @section scripts{
 <script>
     $(".linkDelete").click(function (event) {

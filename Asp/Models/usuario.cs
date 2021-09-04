@@ -11,7 +11,7 @@ namespace Asp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,12 +22,24 @@ namespace Asp.Models
         }
     
         public int id { get; set; }
+
+        [Required(ErrorMessage = "Campo Necesario")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "Campo Necesario")]
         public string apellido { get; set; }
+
+        [Required(ErrorMessage = "Campo Necesario")]
+        [DataType(DataType.Date)]
         public System.DateTime fecha_nacimiento { get; set; }
+
+        [Required(ErrorMessage = "Campo Necesario")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "Campo Necesario")]
+        [StringLength(8, ErrorMessage = "Clave debe tener Maximo 8 caracteres")]
         public string password { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<compra> compra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

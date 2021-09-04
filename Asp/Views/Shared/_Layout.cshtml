@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Aplicación de ASP.NET</title>
+    <title>@ViewBag.Title - Aplicación de Isaac</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -25,16 +25,14 @@
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
 
-                    /*modificación*/
-
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Tablas
                                 <span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span>
-
                             </a>
+
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
                                 <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
@@ -47,26 +45,13 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 Tablas Foraneas
                                 <span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>
-
                             </a>
+
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
                                 <li>@Html.ActionLink("Producto Imagen", "Index", "ProductoImagen")</li>
                                 <li>@Html.ActionLink("Compras", "Index", "Compra")</li>
                                 <li>@Html.ActionLink("Rol de Usuario", "Index", "UsuarioRol")</li>
                                 <li>@Html.ActionLink("Producto Compra", "Index", "ProductoCompra")</li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Tablas con Query
-                                <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
-
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Reporte", "Index", "Producto/Reporte")</li>
-                                
                             </ul>
                         </li>
 
@@ -77,9 +62,6 @@
                     {
                         <li>@Html.ActionLink("Iniciar Sesión", "Login", "Usuario")</li>
                     }
-
-
-
                 </ul>
                     </div>
 </div>

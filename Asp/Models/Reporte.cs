@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Asp.Models
 {
-    public class Reporte
+    public class Reporte //Producto
     {
         public string nombreProveedor { get; set; }
         public string direccionProveedor { get; set; }

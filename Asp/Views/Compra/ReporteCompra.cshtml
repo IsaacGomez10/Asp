@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Asp.Models.ReporteCompra>
+    @{ 
+        ViewBag.Title = "Reporte";
+    }
+
+<h2>Reporte Compra</h2>
+
+<table class="table">
+
+    <tr>
+        <th>Fecha de Facturación</th>
+        <th>Cliente</th>
+        <th>Cantidad de Producto</th>
+        <th>Total compra</th>
+        <th>Atendido por</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+<tr>
+    <td>@Html.DisplayFor(modelItem => item.fechaCompra)</td>
+    <td>@Html.DisplayFor(modelItem => item.nombreCliente)</td>
+    <td>@Html.DisplayFor(modelItem => item.cantidadProdctComp)</td>
+    <td>@Html.DisplayFor(modelItem => item.totalCompra)</td>
+    <td>@Html.DisplayFor(modelItem => item.nombreUsuario)</td>
+</tr>
+            }
+</table>
+
+<div>
+    @Html.ActionLink("Regresar a Lista", "Index")
+</div>

@@ -156,5 +156,37 @@ namespace Asp.Controllers
                 return View();
             }
         }
+
+        public ActionResult ReporteCompra()
+        {
+            try
+            {
+                var db = new inventario2021Entities();
+                var query = from tabCompra in db.compra
+                            join tabCliente in db.cliente on tabCompra.id_cliente equals tabCliente.id
+                            join tabProductComp in db.producto_compra on tabCompra.id equals tabProductComp.id_compra
+                            join tabUsuario in db.usuario on tabCompra.id_usuario equals tabUsuario.id
+                            orderby tabCompra.fecha ascending
+                            select new ReporteCompra
+                            {
+                                
+                                nombreCliente = tabCliente.nombre,
+                                cantidadProdctComp = tabProductComp.cantidad,
+                                nombreUsuario = tabUsuario.nombre,
+                                fechaCompra = tabCompra.fecha,
+                                totalCompra = tabCompra.total
+
+
+                            };
+
+                return View(query);
+
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
     }
 }
