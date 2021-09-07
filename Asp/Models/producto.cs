@@ -24,7 +24,7 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required]
-        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
+        [RegularExpression(@"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
         public string nombre { get; set; }
 
         [Required]
