@@ -23,9 +23,11 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required]
+        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
         public string nombre { get; set; }
 
         [Required]
+        [RegularExpression(@" /^\d{7,14}$", ErrorMessage = "Ingrese un Número valido")]
         public string documento { get; set; }
 
         [Required]

@@ -23,15 +23,18 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required]
+        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
         public string nombre { get; set; }
 
         [Required]
         public string direccion { get; set; }
 
         [Required]
+        [RegularExpression(@" /^\d{7,14}$",ErrorMessage ="Ingrese un Número valido")]
         public string telefono { get; set; }
 
         [Required]
+        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
         public string nombre_contacto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

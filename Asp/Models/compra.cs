@@ -27,6 +27,7 @@ namespace Asp.Models
         public System.DateTime fecha { get; set; }
 
         [Required]
+        [RegularExpression(@"/^\d{1,}$")]
         public int total { get; set; }
 
         [Required]

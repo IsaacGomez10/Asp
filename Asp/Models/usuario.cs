@@ -24,9 +24,11 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = "Campo Necesario")]
+        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$",ErrorMessage ="Caracter Invalido, verifique nuevamente")]
         public string nombre { get; set; }
 
         [Required(ErrorMessage = "Campo Necesario")]
+        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
         public string apellido { get; set; }
 
         [Required(ErrorMessage = "Campo Necesario")]
@@ -34,10 +36,12 @@ namespace Asp.Models
         public System.DateTime fecha_nacimiento { get; set; }
 
         [Required(ErrorMessage = "Campo Necesario")]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
         [Required(ErrorMessage = "Campo Necesario")]
-        [StringLength(8, ErrorMessage = "Clave debe tener Maximo 8 caracteres")]
+        [RegularExpression(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+        ,ErrorMessage = "Al menos una letra mayúscula, Al menos una letra minúscula, Al menos un número, Al menos un carácter especial y Mínimo 8 Caracteres")]
         public string password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
