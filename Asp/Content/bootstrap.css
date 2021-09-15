@@ -204,7 +204,7 @@ th {
   }
   a,
   a:visited {
-    text-decoration: underline;
+    text-decoration: none;
   }
   a[href]:after {
     content: " (" attr(href) ")";
@@ -4685,10 +4685,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-brand {
   color: #ffffff;
 }
+/*Boton princial de barra*/
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #000000;
   background:#ffffff;
+  transition: .10s ease all;
+
 }
 .navbar-inverse .navbar-text {
   color: #9d9d9d;
@@ -4702,7 +4705,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
         color: #ffffff;
         background: #000000;
         box-shadow: 0px 4px 0px rgb(218, 38, 38);
-        transition: .10s ease all;
+        transition: .15s ease all;
     }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -4722,7 +4725,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     .navbar-inverse .navbar-nav > .open > a:focus {
         color: #ffffff;
         background: #000000 ;
-        transition: .3s ease all;
+        transition: .15s ease all;
         box-shadow: 0px 2px 0px rgb(218, 38, 38,0.5);
     }
 @media (max-width: 767px) {
