@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Crear Nuevo Cliente", "Create")
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             Nombre
@@ -44,7 +44,7 @@
     }
 
 </table>
-
+<div>@Html.ActionLink("Cargar Archivos", "/Cargar")</div>
 @section scripts{
     <script>
         $(".linkDelete").click(function (event) {

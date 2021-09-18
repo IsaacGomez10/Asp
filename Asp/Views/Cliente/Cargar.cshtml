@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Subir CSV";
+}
+
+<h2>Subir CSV Cliente</h2>
+@using (Html.BeginForm("Cargar", "Cliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <label class="control-label col-md-2">Cargar</label>
+        <div class="col-md-10">
+            <input type="file" name="subirFile" class="btn btn-default" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input class="btn btn-default" type="submit" value="Subir" />
+        </div>
+    </div>
+    <div>@Html.ActionLink("Regresar a Lista", "Index")</div>
+}
+

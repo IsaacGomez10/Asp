@@ -26,6 +26,7 @@ namespace Asp.Controllers
             return View();
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
 
         public ActionResult Create(proveedor provider)
@@ -171,7 +172,6 @@ namespace Asp.Controllers
                                 telefono = row.Split(';')[2],
                                 nombre_contacto = row.Split(';')[3]
                             };
-
                             using (var db = new inventario2021Entities())
                             {
                                 db.proveedor.Add(newProveedor);

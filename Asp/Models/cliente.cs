@@ -27,10 +27,11 @@ namespace Asp.Models
         public string nombre { get; set; }
 
         [Required]
-        [RegularExpression(@" /^\d{7,14}$", ErrorMessage = "Ingrese un Número valido")]
+        [RegularExpression(@"^\d{7,14}$", ErrorMessage = "Ingrese un Número valido")]
         public string documento { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")]
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

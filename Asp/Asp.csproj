@@ -300,10 +300,12 @@
     <Content Include="Views\Producto\ReportePdf.cshtml" />
     <Content Include="Views\Compra\ReporteCompraPdf.cshtml" />
     <Content Include="Views\Proveedor\uploadCSV.cshtml" />
-    <Content Include="Uploads\Datos.CSV" />
+    <Content Include="Views\Cliente\Cargar.cshtml" />
+    <Content Include="UploadsClient\Datos.csv" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

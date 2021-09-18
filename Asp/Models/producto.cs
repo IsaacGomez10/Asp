@@ -32,11 +32,11 @@ namespace Asp.Models
         public int percio_unitario { get; set; }
 
         [Required]
-        [RegularExpression(@"/^.{40,80}$", ErrorMessage = "sobrepaso el limite")]
+        [RegularExpression(@"^.{40,80}$", ErrorMessage = "sobrepaso el limite")]
         public string descripcion { get; set; }
 
         [Required]
-        [RegularExpression(@"/^\d{1,}$")]
+        [RegularExpression(@"^\d{1,}$")]
         public int cantidad { get; set; }
 
         [Required]

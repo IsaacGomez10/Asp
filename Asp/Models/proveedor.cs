@@ -30,11 +30,11 @@ namespace Asp.Models
         public string direccion { get; set; }
 
         [Required]
-        [RegularExpression(@" /^\d{7,14}$",ErrorMessage ="Ingrese un Número valido")]
+        [RegularExpression(@"^(\(?\+[\d]{1,3}\)?)\s?([\d]{1,5})\s?([\d][\s\.-]?){6,7}$", ErrorMessage = "Ingrese un Número valido")]
         public string telefono { get; set; }
 
         [Required]
-        [RegularExpression(@"/^[a-zA-ZÀ-ÿ\s]{1,40}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
+        [RegularExpression(@"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
         public string nombre_contacto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

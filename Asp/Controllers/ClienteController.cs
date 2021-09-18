@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
+using System.IO;
 
 namespace Asp.Controllers
 {
@@ -19,6 +20,7 @@ namespace Asp.Controllers
             }
             
         }
+
         public ActionResult Create()
         {
             return View();
@@ -118,6 +120,68 @@ namespace Asp.Controllers
                 }
             }
             catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
+
+        public ActionResult Cargar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult Cargar(HttpPostedFileBase subirFile)
+        {
+            try
+            {
+
+                string filePath = string.Empty;
+
+                if (subirFile != null)
+                {
+                    string path = Server.MapPath("~/UploadsClient/");
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                    filePath = path + Path.GetFileName(subirFile.FileName);
+
+                    string extension = Path.GetExtension(subirFile.FileName);
+
+                    subirFile.SaveAs(filePath);
+
+                    string csvData = System.IO.File.ReadAllText(filePath);
+
+                    foreach (string row in csvData.Split('\n'))
+                    {
+                        if (!string.IsNullOrEmpty(row))
+                        {
+                            var newCliente = new cliente
+                            {
+                                nombre = row.Split(';')[0],
+                                documento = row.Split(';')[1],
+                                email = row.Split(';')[2]
+                            };
+
+                            using(var db = new inventario2021Entities())
+                            {
+                                db.cliente.Add(newCliente);
+                                db.SaveChanges();
+                            }
+
+                        }
+                    }
+                }
+
+                return View();
+
+            }
+            catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
