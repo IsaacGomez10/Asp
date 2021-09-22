@@ -40,8 +40,6 @@ namespace Asp.Models
         public string email { get; set; }
 
         [Required(ErrorMessage = "Campo Necesario")]
-        [RegularExpression(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-        ,ErrorMessage = "La contraseña debe tener: Al menos una letra mayúscula, una letra minúscula, un número, un carácter especial y Mínimo 8 Caracteres")]
         public string password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,7 +17,7 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required]
-        [RegularExpression(@"^.{40,80}$", ErrorMessage = "sobrepaso el limite")]
+        [StringLength(50, ErrorMessage = "Logitud máxima 50")]
         public string imagen { get; set; }
 
         [Required]

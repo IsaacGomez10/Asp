@@ -23,7 +23,7 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required]
-        [RegularExpression(@"^.{40,80}$", ErrorMessage = "sobrepaso el limite")]
+        [StringLength(50, ErrorMessage = "Logitud máxima 50")]
         public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

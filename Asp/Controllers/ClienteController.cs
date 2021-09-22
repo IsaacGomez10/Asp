@@ -133,14 +133,14 @@ namespace Asp.Controllers
 
         [HttpPost]
 
-        public ActionResult Cargar(HttpPostedFileBase subirFile)
+        public ActionResult Cargar(HttpPostedFileBase uplFile)
         {
             try
             {
 
                 string filePath = string.Empty;
 
-                if (subirFile != null)
+                if (uplFile != null)
                 {
                     string path = Server.MapPath("~/UploadsClient/");
 
@@ -149,11 +149,11 @@ namespace Asp.Controllers
                         Directory.CreateDirectory(path);
                     }
 
-                    filePath = path + Path.GetFileName(subirFile.FileName);
+                    filePath = path + Path.GetFileName(uplFile.FileName);
 
-                    string extension = Path.GetExtension(subirFile.FileName);
+                    string extension = Path.GetExtension(uplFile.FileName);
 
-                    subirFile.SaveAs(filePath);
+                    uplFile.SaveAs(filePath);
 
                     string csvData = System.IO.File.ReadAllText(filePath);
 

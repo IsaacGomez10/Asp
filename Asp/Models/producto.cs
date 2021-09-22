@@ -24,19 +24,17 @@ namespace Asp.Models
         public int id { get; set; }
 
         [Required]
-        [RegularExpression(@"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$", ErrorMessage = "Caracter Invalido, verifique nuevamente")]
+        [StringLength(30, ErrorMessage = "Máximo 30 caracteres")]
         public string nombre { get; set; }
 
         [Required]
-        [RegularExpression(@"/^\d{1,}$")]
         public int percio_unitario { get; set; }
 
         [Required]
-        [RegularExpression(@"^.{40,80}$", ErrorMessage = "sobrepaso el limite")]
+        [StringLength(50, ErrorMessage = "Máximo 50 caracteres")]
         public string descripcion { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d{1,}$")]
         public int cantidad { get; set; }
 
         [Required]

@@ -6,11 +6,16 @@ using System.Web.Mvc;
 using Asp.Models;
 using System.Web.Security;
 using System.Text;
+using System.IO;
+using System.Web.Routing;
+
 
 namespace Asp.Controllers
 {
     public class UsuarioController : Controller
     {
+        //private object DataTime;
+
         [Authorize]
         // GET: Usuario
         // Conexión a la base de datos
@@ -176,12 +181,76 @@ namespace Asp.Controllers
                 return View();
             }
         }
+
          [Authorize]
 
         public ActionResult CloseSession()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Cargar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult Cargar(HttpPostedFileBase uplFile)
+        {
+            try
+            {
+                string filePath = string.Empty;
+
+                if(uplFile != null)
+                {
+
+                    string path = Server.MapPath("~/UploadsUser/");
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                    filePath = path + Path.GetFileName(uplFile.FileName);
+
+                    string extension = Path.GetExtension(uplFile.FileName);
+
+                    uplFile.SaveAs(filePath);
+
+                    string csvData = System.IO.File.ReadAllText(filePath);
+
+                    foreach(string row in csvData.Split('\n'))
+                    {
+                        if (!string.IsNullOrEmpty(row))
+                        {
+                            var newUser = new usuario
+                            {
+                                nombre = row.Split(';')[0],
+                                apellido = row.Split(';')[1],
+                                fecha_nacimiento = Convert.ToDateTime(row.Split(';')[2]),
+                                email = row.Split(';')[3],
+                                password = row.Split(';')[4]
+                            };
+
+                            using (var db = new inventario2021Entities())
+                            {
+                                db.usuario.Add(newUser);
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+
+                }
+
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
         }
     }
 }

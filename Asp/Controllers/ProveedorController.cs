@@ -142,7 +142,7 @@ namespace Asp.Controllers
                 if (fileForm != null)
                 {
                     //ruta de la carpeta que guardara el archivo
-                    string path = Server.MapPath("~/Uploads/");
+                    string path = Server.MapPath("~/UploadsProvider/");
 
                     //condicion para saber si la carpeta uploads existe
                     if (!Directory.Exists(path))

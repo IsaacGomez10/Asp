@@ -3,13 +3,13 @@
     ViewBag.Title = "Subir CSV";
 }
 
-<h2>Subir CSV Cliente</h2>
-@using (Html.BeginForm("Cargar", "Cliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<h2>Subir CSV Roles</h2>
+@using (Html.BeginForm("Cargar", "Roles", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         <label class="control-label col-md-2">Cargar</label>
         <div class="col-md-10">
-            <input type="file" name="uplFile" class="file-btn" required/>
+            <input type="file" name="uplFile" class="file-btn" required />
         </div>
     </div>
 
@@ -21,4 +21,3 @@
     </div>
     <div>@Html.ActionLink("Regresar a Lista", "Index")</div>
 }
-

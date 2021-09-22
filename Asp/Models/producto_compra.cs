@@ -23,7 +23,6 @@ namespace Asp.Models
         public int id_producto { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d{1,}$")]
         public int cantidad { get; set; }
     
         public virtual compra compra { get; set; }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
+using System.IO;
 
 namespace Asp.Controllers
 {
@@ -122,7 +123,64 @@ namespace Asp.Controllers
 
             }
         }
+
+        public ActionResult Cargar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult Cargar(HttpPostedFileBase uplFile)
+        {
+            try
+            {
+
+                string filePath = string.Empty;
+
+                if(uplFile != null)
+                {
+                    string path = Server.MapPath("~/UploadsRol/");
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                    filePath = path + Path.GetFileName(uplFile.FileName);
+
+                    string extension = Path.GetExtension(uplFile.FileName);
+
+                    uplFile.SaveAs(filePath);
+
+                    string csvData = System.IO.File.ReadAllText(filePath);
+
+                    foreach(string row in csvData.Split('\n'))
+                    {
+                        if (!string.IsNullOrEmpty(row))
+                        {
+                            var newRol = new roles
+                            {
+                                descripcion = row
+                            };
+
+                            using (var db = new inventario2021Entities())
+                            {
+                                db.roles.Add(newRol);
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+                return View();
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
     }
 
-    
+
 }
