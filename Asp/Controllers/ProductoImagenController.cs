@@ -50,7 +50,7 @@ namespace Asp.Controllers
                 if (imagen != null)
                 {
 
-                    string path = Server.MapPath("~/UploadsPictures/");
+                    string path = Server.MapPath("~/UploadsPictures");
 
 
                     if (!Directory.Exists(path))

@@ -219,7 +219,7 @@ namespace Asp.Controllers
 
                 if (uplFile != null)
                 {
-                    string path = Server.MapPath("~/Uploads/Product");
+                    string path = Server.MapPath("~/UploadsProduct");
 
                     if (!Directory.Exists(path))
                     {

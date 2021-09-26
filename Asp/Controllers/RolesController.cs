@@ -141,7 +141,7 @@ namespace Asp.Controllers
 
                 if(uplFile != null)
                 {
-                    string path = Server.MapPath("~/Uploads/Rol");
+                    string path = Server.MapPath("~/UploadsRol");
 
                     if (!Directory.Exists(path))
                     {
