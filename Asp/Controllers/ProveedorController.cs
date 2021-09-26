@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
 using System.IO;
+using System.Web.Routing;
 
 namespace Asp.Controllers
 {
@@ -142,7 +143,7 @@ namespace Asp.Controllers
                 if (fileForm != null)
                 {
                     //ruta de la carpeta que guardara el archivo
-                    string path = Server.MapPath("~/UploadsProvider/");
+                    string path = Server.MapPath("~/Uploads/Provider");
 
                     //condicion para saber si la carpeta uploads existe
                     if (!Directory.Exists(path))
@@ -191,5 +192,34 @@ namespace Asp.Controllers
             }
         }
 
+        public ActionResult PagIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var proveedor = db.proveedor.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros)
+                        .Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.proveedor.Count();
+                    var modelo = new IndexViewModel();
+                    modelo.Proveedores = proveedor;
+                    modelo.paginaActual = pagina;
+                    modelo.totalRegistros = totalRegistros;
+                    modelo.registrosPorPagina = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+        }
     }
 }

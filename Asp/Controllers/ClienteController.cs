@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
 using System.IO;
+using System.Web.Routing;
 
 namespace Asp.Controllers
 {
@@ -142,7 +143,7 @@ namespace Asp.Controllers
 
                 if (uplFile != null)
                 {
-                    string path = Server.MapPath("~/UploadsClient/");
+                    string path = Server.MapPath("~/Uploads/Client");
 
                     if (!Directory.Exists(path))
                     {
@@ -187,5 +188,36 @@ namespace Asp.Controllers
                 return View();
             }
         }
+
+        public ActionResult PagIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var cliente = db.cliente.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros)
+                        .Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.cliente.Count();
+                    var modelo = new IndexViewModel();
+                    modelo.Clientes = cliente;
+                    modelo.paginaActual = pagina;
+                    modelo.totalRegistros = totalRegistros;
+                    modelo.registrosPorPagina = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+        }
+
     }
 }

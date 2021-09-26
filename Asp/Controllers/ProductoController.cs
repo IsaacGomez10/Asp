@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Asp.Models;
 using Rotativa;
 using System.IO;
+using System.Web.Routing;
 
 namespace Asp.Controllers
 {
@@ -47,6 +48,7 @@ namespace Asp.Controllers
 
         public ActionResult Create(producto product)
         {
+
             if (!ModelState.IsValid)
                 return View();
             try
@@ -88,8 +90,12 @@ namespace Asp.Controllers
         {
             using (var db = new inventario2021Entities())
             {
-                var findProduct = db.producto.Find(id);
-                return View(findProduct);
+                var producto = db.producto.Find(id);
+                //conusltando de la tabla producto_iamgen las imagenes del producto
+                var imagen = db.producto_imagen.Where(e => e.id_producto == producto.id).FirstOrDefault();
+                //pasando la ruta a la vista
+                ViewBag.imagen = imagen.imagen;
+                return View(producto);
             }
         }
 
@@ -213,7 +219,7 @@ namespace Asp.Controllers
 
                 if (uplFile != null)
                 {
-                    string path = Server.MapPath("~/UploadsProduct/");
+                    string path = Server.MapPath("~/Uploads/Product");
 
                     if (!Directory.Exists(path))
                     {
@@ -258,5 +264,35 @@ namespace Asp.Controllers
                 return View();
             }
         }
+        public ActionResult PagIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var producto = db.producto.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros)
+                        .Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.producto.Count();
+                    var modelo = new IndexViewModel();
+                    modelo.Productos = producto;
+                    modelo.paginaActual = pagina;
+                    modelo.totalRegistros = totalRegistros;
+                    modelo.registrosPorPagina = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
+                return View();
+            }
+        }
+
     }
 }

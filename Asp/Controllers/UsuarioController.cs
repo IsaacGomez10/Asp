@@ -206,7 +206,7 @@ namespace Asp.Controllers
                 if(uplFile != null)
                 {
 
-                    string path = Server.MapPath("~/UploadsUser/");
+                    string path = Server.MapPath("~/Uploads/User");
 
                     if (!Directory.Exists(path))
                     {
@@ -231,7 +231,7 @@ namespace Asp.Controllers
                                 apellido = row.Split(';')[1],
                                 fecha_nacimiento = Convert.ToDateTime(row.Split(';')[2]),
                                 email = row.Split(';')[3],
-                                password = row.Split(';')[4]
+                                password = UsuarioController.HashSHA1(row.Split(';')[4])
                             };
 
                             using (var db = new inventario2021Entities())
@@ -249,6 +249,36 @@ namespace Asp.Controllers
             catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
+
+        public ActionResult PagIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var usuarios = db.usuario.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros)
+                        .Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.usuario.Count();
+                    var modelo = new IndexViewModel();
+                    modelo.Usuarios = usuarios;
+                    modelo.paginaActual = pagina;
+                    modelo.totalRegistros = totalRegistros;
+                    modelo.registrosPorPagina = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Asp.Models.usuario>
+﻿
+@model IEnumerable<Asp.Models.usuario>
 
 @{
     ViewBag.Title = "Lista";
@@ -51,6 +52,9 @@
 
 </table>
 <div>@Html.ActionLink("Cargar Archivos", "Cargar")</div>
+
+@*@{ Html.RenderPartial("Paginador", Model);}*@
+
 @section scripts{
     <script>
         $(".linkDelete").click(function (event) {

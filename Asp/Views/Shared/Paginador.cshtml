@@ -1,0 +1,44 @@
+﻿@model Asp.Models.BaseModelo
+
+@{ 
+    var cantidadPaginas = (int)Math.Ceiling((double)Model.totalRegistros / Model.registrosPorPagina);
+}
+
+@{ 
+    int inicio = 1;
+    var radio = 3;
+    var cantidadMaximaDePaginas = radio * 2 + 1;
+    int final = (cantidadPaginas > cantidadMaximaDePaginas) ? cantidadMaximaDePaginas : cantidadPaginas;
+    if(Model.paginaActual > radio + 1)
+    {
+        inicio = Model.paginaActual - radio;
+        if(cantidadPaginas > Model.paginaActual + radio)
+        {
+            final = Model.paginaActual + radio;
+        }
+        else
+        {
+            final = cantidadPaginas;
+        }
+    }
+}
+
+<ul class="pagination">
+    @{ Model.valueQueryString["pagina"] = 1;}
+
+    <li>@Html.ActionLink("<",null,Model.valueQueryString)</li>
+    @for(int i = inicio; i <= final; i++)
+                {
+                    Model.valueQueryString["pagina"] = i;
+                    if(i == Model.paginaActual)
+                    {
+                    <li class="active">@Html.ActionLink(i.ToString(),null, Model.valueQueryString)</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink(i.ToString(),null,Model.valueQueryString)</li>
+                }
+            }
+    @{ Model.valueQueryString["pagina"] = cantidadPaginas;}
+    <li>@Html.ActionLink(">",null,new { pagina = cantidadPaginas})</li>
+</ul>

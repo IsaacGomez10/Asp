@@ -1,0 +1,55 @@
+﻿@model Asp.Models.IndexViewModel
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Lista Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Usuario", "Create")
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Nombre Usuario
+        </th>
+        <th>
+            Apellido Usuario
+        </th>
+        <th>
+            Fecha Nacimiento
+        </th>
+        <th>
+            Email
+        </th>
+    </tr>
+    @foreach (var usuario in Model.Usuarios)
+    {
+<tr>
+    <td>@Html.DisplayFor(modelusuario => usuario.nombre)</td>
+    <td>@Html.DisplayFor(modelusuario => usuario.apellido)</td>
+    <td>@Html.DisplayFor(modelusuario => usuario.fecha_nacimiento)</td>
+    <td>@Html.DisplayFor(modelusuario => usuario.email)</td>
+
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = usuario.id }) |
+        @Html.ActionLink("Detalles", "Details", new { id = usuario.id }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = usuario.id }, new { @class = "linkDelete" })
+    </td>
+</tr>
+    }
+
+</table>
+<div>@Html.ActionLink("Cargar Archivos", "Cargar")</div>
+
+@{ Html.RenderPartial("Paginador", Model);}
+
+@section scripts{
+    <script>
+        $(".linkDelete").click(function (event) {
+            if (!confirm('¿desea eliminar?'))
+                event.preventDefault();
+        })
+    </script>
+}

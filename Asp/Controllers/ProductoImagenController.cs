@@ -4,21 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
+using System.IO;
 
 namespace Asp.Controllers
 {
     public class ProductoImagenController : Controller
     {
-        [Authorize]
-        // GET: ProducImg
+        // GET: ProductoImagen
         public ActionResult Index()
         {
-            using(var db = new inventario2021Entities())
-            {
-                return View(db.producto_imagen.ToList());
-            }
+            return View();
         }
-
         public static string NombreProducto(int idProduct)
         {
             using (var db = new inventario2021Entities())
@@ -29,13 +25,13 @@ namespace Asp.Controllers
 
         public ActionResult ListaProductos()
         {
-            using(var db = new inventario2021Entities())
+            using (var db = new inventario2021Entities())
             {
                 return PartialView(db.producto.ToList());
             }
         }
 
-        public ActionResult Create()
+        public ActionResult CargarImagen()
         {
             return View();
         }
@@ -43,92 +39,49 @@ namespace Asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create(producto_imagen productImg)
-        {
-            if (!ModelState.IsValid)
-                return View();
-            try
-            {
-                using (var db = new inventario2021Entities())
-                {
-                    db.producto_imagen.Add(productImg);
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-            }
-            catch(Exception ex)
-            {
-                ModelState.AddModelError("", "Error " + ex);
-                return View();
-            }
-        }
-
-        public ActionResult Edit(int id)
+        public ActionResult CargarImagen(int producto, HttpPostedFileBase imagen)
         {
             try
             {
-                using (var db = new inventario2021Entities())
+                string filePath = string.Empty;
+                string nameFile = "";
+
+
+                if (imagen != null)
                 {
-                    producto_imagen findProducImg = db.producto_imagen.Where(a => a.id == id).FirstOrDefault();
-                    return View(findProducImg);
+
+                    string path = Server.MapPath("~/UploadsPictures/");
+
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                    nameFile = Path.GetFileName(imagen.FileName);
+
+
+                    filePath = path + Path.GetFileName(imagen.FileName);
+
+
+                    string extension = Path.GetExtension(imagen.FileName);
+
+
+                    imagen.SaveAs(filePath);
+
+                    using (var db = new inventario2021Entities())
+                    {
+                        var imagenProducto = new producto_imagen();
+                        imagenProducto.id_producto = producto;
+                        imagenProducto.imagen = "/UploadsPictures/" + nameFile;
+                        db.producto_imagen.Add(imagenProducto);
+                        db.SaveChanges();
+                    }
                 }
-            }
-            catch(Exception ex)
-            {
-                ModelState.AddModelError("", "Error " + ex);
                 return View();
             }
-        }
 
-        public ActionResult Details(int id)
-        {
-            using(var db = new inventario2021Entities())
-            {
-                var findProductImg = db.producto_imagen.Find(id);
-                return View(findProductImg);
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public ActionResult Edit(producto_imagen editProcImg)
-        {
-            try
-            {
-                using(var db = new inventario2021Entities())
-                {
-                    producto_imagen productImg = db.producto_imagen.Find(editProcImg.id);
-
-                    productImg.imagen = editProcImg.imagen;
-                    productImg.id_producto = editProcImg.id_producto;
-
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            catch(Exception ex)
-            {
-                ModelState.AddModelError("", "Error " + ex);
-                return View();
-            }
-        }
-
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                using(var db = new inventario2021Entities())
-                {
-                    producto_imagen productImg = db.producto_imagen.Find(id);
-                    db.producto_imagen.Remove(productImg);
-
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
