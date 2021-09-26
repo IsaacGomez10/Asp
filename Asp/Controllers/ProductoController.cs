@@ -58,7 +58,7 @@ namespace Asp.Controllers
                     db.producto.Add(product);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)
@@ -117,7 +117,7 @@ namespace Asp.Controllers
                     product.id_proveedor = editProduct.id_proveedor;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
 
                 }
 

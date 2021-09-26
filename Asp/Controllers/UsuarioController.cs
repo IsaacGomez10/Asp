@@ -46,7 +46,7 @@ namespace Asp.Controllers
                     usuario.password = UsuarioController.HashSHA1(usuario.password);
                     db.usuario.Add(usuario);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }catch(Exception ex)
             {
@@ -115,7 +115,7 @@ namespace Asp.Controllers
                     user.password = UsuarioController.HashSHA1(editUser.password);
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)

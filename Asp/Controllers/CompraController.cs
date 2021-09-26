@@ -72,7 +72,7 @@ namespace Asp.Controllers
                     db.compra.Add(Buy);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)
@@ -128,7 +128,7 @@ namespace Asp.Controllers
                     buy.id_usuario = editCompra.id_usuario;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)

@@ -73,7 +73,7 @@ namespace Asp.Controllers
                     {
                         var imagenProducto = new producto_imagen();
                         imagenProducto.id_producto = producto;
-                        imagenProducto.imagen = "/UploadsPictures/" + nameFile;
+                        imagenProducto.imagen = "/UploadsPictures" + nameFile;
                         db.producto_imagen.Add(imagenProducto);
                         db.SaveChanges();
                     }

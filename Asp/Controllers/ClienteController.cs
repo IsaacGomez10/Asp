@@ -39,7 +39,7 @@ namespace Asp.Controllers
                 {
                     db.cliente.Add(cliente);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)
@@ -117,7 +117,7 @@ namespace Asp.Controllers
                     Client.email = editCliente.email;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)

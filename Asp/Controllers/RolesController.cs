@@ -41,7 +41,7 @@ namespace Asp.Controllers
                     db.roles.Add(rol);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)
@@ -93,7 +93,7 @@ namespace Asp.Controllers
                     rol.descripcion = editRol.descripcion;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)

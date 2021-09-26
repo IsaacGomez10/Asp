@@ -41,7 +41,7 @@ namespace Asp.Controllers
                     db.proveedor.Add(provider);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)
@@ -115,7 +115,7 @@ namespace Asp.Controllers
                     provider.nombre_contacto = editProvider.nombre_contacto;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)
