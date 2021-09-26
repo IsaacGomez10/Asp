@@ -55,7 +55,7 @@ namespace Asp.Controllers
         {
             using(var db = new inventario2021Entities())
             {
-                var findRol = db.roles.Find();
+                var findRol = db.roles.Find(id);
                 return View(findRol);
             }
         }
