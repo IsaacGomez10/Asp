@@ -63,7 +63,7 @@ namespace Asp.Controllers
                     db.cliente.Remove(findCliente);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)

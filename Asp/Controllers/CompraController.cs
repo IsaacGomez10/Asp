@@ -141,7 +141,7 @@ namespace Asp.Controllers
                     db.compra.Remove(buy);
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)

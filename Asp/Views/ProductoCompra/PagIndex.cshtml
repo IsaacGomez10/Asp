@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Asp.Models.producto_compra>
-
+﻿@model Asp.Models.IndexViewModel
 @{
     ViewBag.Title = "Lista";
 }
@@ -23,27 +22,29 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var compra in Model.ProductoCompra)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
+                @Html.DisplayFor(modelPcCompra => compra.cantidad)
             </td>
             <td>
-                @Asp.Controllers.ProductoCompraController.IdCompra(item.id)
+                @Asp.Controllers.ProductoCompraController.IdCompra(compra.id)
             </td>
             <td>
-                @Asp.Controllers.ProductoCompraController.NombreProducto(item.id_producto)
+                @Asp.Controllers.ProductoCompraController.NombreProducto(compra.id_producto)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "linkDelete" })
+                @Html.ActionLink("Editar", "Edit", new { id = compra.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = compra.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = compra.id }, new { @class = "linkDelete" })
             </td>
         </tr>
     }
 
 </table>
+
+@{ Html.RenderPartial("Paginador", Model);}
 
 @section scripts{
     <script>
@@ -53,4 +54,5 @@
         })
     </script>
 }
+
 

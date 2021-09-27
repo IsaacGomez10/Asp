@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Asp.Models;
+using System.Web.Routing;
 
 namespace Asp.Controllers
 {
@@ -147,6 +148,36 @@ namespace Asp.Controllers
             catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
+
+        public ActionResult PagIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var usuarioRol = db.usuariorol.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros)
+                        .Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.cliente.Count();
+                    var modelo = new IndexViewModel();
+                    modelo.UsuarioRol = usuarioRol;
+                    modelo.paginaActual = pagina;
+                    modelo.totalRegistros = totalRegistros;
+                    modelo.registrosPorPagina = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }

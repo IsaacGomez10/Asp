@@ -127,7 +127,7 @@ namespace Asp.Controllers
                     var findUser = db.usuario.Find(id);
                     db.usuario.Remove(findUser);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)
@@ -159,7 +159,7 @@ namespace Asp.Controllers
                         FormsAuthentication.SetAuthCookie(userLogin.email, true);
                         Session["User"] = userLogin;
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("PagIndex");
                     }
                     else
                     {

@@ -12,13 +12,7 @@ namespace Asp.Controllers
     {
         [Authorize]
         // GET: ProductoCompra
-        public ActionResult Index()
-        {
-            using (var db = new inventario2021Entities())
-            {
-                return View(db.producto_compra.ToList());
-            }
-        }
+        
         public static string NombreProducto(int idProduct)
         {
             using (var db = new inventario2021Entities())
@@ -71,7 +65,7 @@ namespace Asp.Controllers
                     db.producto_compra.Add(PdBuy);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)
@@ -123,7 +117,7 @@ namespace Asp.Controllers
                     Buy.cantidad = editPdBuy.cantidad;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)
@@ -143,12 +137,42 @@ namespace Asp.Controllers
                     db.producto_compra.Remove(Buy);
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
+                return View();
+            }
+        }
+
+        public ActionResult PagIndex(int pagina = 1)
+        {
+            try
+            {
+                var cantidadRegistros = 5;
+
+                using (var db = new inventario2021Entities())
+                {
+                    var productoCompra = db.producto_compra.OrderBy(x => x.id).Skip((pagina - 1) * cantidadRegistros)
+                        .Take(cantidadRegistros).ToList();
+
+                    var totalRegistros = db.producto_compra.Count();
+                    var modelo = new IndexViewModel();
+                    modelo.ProductoCompra = productoCompra;
+                    modelo.paginaActual = pagina;
+                    modelo.totalRegistros = totalRegistros;
+                    modelo.registrosPorPagina = cantidadRegistros;
+                    modelo.valueQueryString = new RouteValueDictionary();
+
+                    return View(modelo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "error " + ex);
                 return View();
             }
         }

@@ -280,7 +280,6 @@
     <Content Include="Views\UsuarioRol\Edit.cshtml" />
     <Content Include="Views\UsuarioRol\Details.cshtml" />
     <Content Include="Views\UsuarioRol\Index.cshtml" />
-    <Content Include="Views\ProductoCompra\Index.cshtml" />
     <Content Include="Views\ProductoCompra\ListaProductos.cshtml" />
     <Content Include="Views\ProductoCompra\ListaCompras.cshtml" />
     <Content Include="Views\ProductoCompra\Create.cshtml" />
@@ -310,6 +309,7 @@
     <Content Include="Views\Roles\PagIndex.cshtml" />
     <Content Include="Views\Cliente\PagIndex.cshtml" />
     <Content Include="Views\Producto\PagIndex.cshtml" />
+    <Content Include="Views\ProductoCompra\PagIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

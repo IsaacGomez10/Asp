@@ -22,23 +22,24 @@
         }
     }
 }
+<center>
+    <ul class="pagination center-block">
+        @{ Model.valueQueryString["pagina"] = 1;}
 
-<ul class="pagination">
-    @{ Model.valueQueryString["pagina"] = 1;}
-
-    <li>@Html.ActionLink("<",null,Model.valueQueryString)</li>
-    @for(int i = inicio; i <= final; i++)
-                {
-                    Model.valueQueryString["pagina"] = i;
-                    if(i == Model.paginaActual)
-                    {
-                    <li class="active">@Html.ActionLink(i.ToString(),null, Model.valueQueryString)</li>
-                }
-                else
-                {
-                    <li>@Html.ActionLink(i.ToString(),null,Model.valueQueryString)</li>
-                }
+        <li>@Html.ActionLink("<", null, Model.valueQueryString)</li>
+        @for (int i = inicio; i <= final; i++)
+        {
+            Model.valueQueryString["pagina"] = i;
+            if (i == Model.paginaActual)
+            {
+                <li class="active">@Html.ActionLink(i.ToString(), null, Model.valueQueryString)</li>
             }
-    @{ Model.valueQueryString["pagina"] = cantidadPaginas;}
-    <li>@Html.ActionLink(">",null,new { pagina = cantidadPaginas})</li>
-</ul>
+            else
+            {
+                <li>@Html.ActionLink(i.ToString(), null, Model.valueQueryString)</li>
+            }
+        }
+        @{ Model.valueQueryString["pagina"] = cantidadPaginas;}
+        <li>@Html.ActionLink(">", null, new { pagina = cantidadPaginas })</li>
+    </ul>
+</center>
