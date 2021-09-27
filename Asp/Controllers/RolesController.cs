@@ -13,13 +13,6 @@ namespace Asp.Controllers
     {
         [Authorize]
         // GET: Roles
-        public ActionResult Index()
-        {
-            using (var db = new inventario2021Entities())
-            {
-                return View(db.roles.ToList());
-            }
-        }
 
         public ActionResult Create()
         {

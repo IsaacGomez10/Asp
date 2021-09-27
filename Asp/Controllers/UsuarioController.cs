@@ -19,13 +19,6 @@ namespace Asp.Controllers
         [Authorize]
         // GET: Usuario
         // Conexión a la base de datos
-        public ActionResult Index()
-        {
-            using (var db = new inventario2021Entities())
-            {
-                return View(db.usuario.ToList());
-            }
-        }
 
         public ActionResult Create()
         {

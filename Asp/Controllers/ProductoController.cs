@@ -14,13 +14,6 @@ namespace Asp.Controllers
     {
         [Authorize]
         // GET: Producto
-        public ActionResult Index()
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return View(db.producto.ToList());
-            }
-        }
 
         public static string NombreProveedor(int idProvider)
         {

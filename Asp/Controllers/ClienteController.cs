@@ -13,14 +13,6 @@ namespace Asp.Controllers
     {
         [Authorize]
         // GET: Cliente
-        public ActionResult Index()
-        {
-            using(var db = new inventario2021Entities())
-            {
-                return View(db.cliente.ToList());
-            }
-            
-        }
 
         public ActionResult Create()
         {
