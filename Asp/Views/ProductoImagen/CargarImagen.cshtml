@@ -1,4 +1,4 @@
-﻿@model Asp.Models.producto
+﻿@model IEnumerable<Asp.Models.producto_imagen>
 @{
     ViewBag.Title = "Cargar Imagen";
 }
@@ -10,19 +10,24 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
-            <label class="control-label col-md-2" for="id_producto" name="producto" >Producto</label>
-            <div class="col-md-10">
-                @Html.Action("ListaProductos")
-                @Html.ValidationMessageFor(model => model.producto_imagen, "", new { @class = "text-danger" })
-                <br />
-            </div>
+        <label class="control-label col-md-2" for="id_producto">Producto</label>
+        <div class="col-md-10">
+            @Html.Action("ListaProductos")
+            <br />
         </div>
+    </div>
+
+    @*<div class="form-group">
+            <label class="control-label col-md-2">Producto</label>
+            <div class="col-md-10">
+                <input type="number" name="producto" class="form-control" />
+            </div>
+        </div>*@
 
     <div class="form-group">
         <label class="control-label col-md-2">Subir Imagen</label>
         <div class="col-md-10">
             <input type="file" name="imagen" />
-            <br />
         </div>
     </div>
 
@@ -36,5 +41,4 @@
     @Html.ActionLink("Regresar a Lista", "PagIndex", "Producto")
 
 }
-
 

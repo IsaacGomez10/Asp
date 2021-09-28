@@ -41,6 +41,7 @@ namespace Asp.Controllers
 
         public ActionResult CargarImagen(int id_producto, HttpPostedFileBase imagen)
         {
+
             try
             {
                 string filePath = string.Empty;

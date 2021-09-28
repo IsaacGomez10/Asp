@@ -236,8 +236,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="UploadsPictures\Inicio.png" />
-    <Content Include="UploadsPictures\Xbox sx.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -301,7 +299,6 @@
     <Content Include="UploadsProvider\DatosProveedor.csv" />
     <Content Include="Views\Usuario\Cargar.cshtml" />
     <Content Include="UploadsUser\DatosUsuario.csv" />
-    <Content Include="Views\ProductoImagen\CargarImagen.cshtml" />
     <Content Include="Views\ProductoImagen\ListaProductos.cshtml" />
     <Content Include="Views\Usuario\PagIndex.cshtml" />
     <Content Include="Views\Shared\Paginador.cshtml" />
@@ -310,9 +307,11 @@
     <Content Include="Views\Cliente\PagIndex.cshtml" />
     <Content Include="Views\Producto\PagIndex.cshtml" />
     <Content Include="Views\ProductoCompra\PagIndex.cshtml" />
+    <Content Include="Views\ProductoImagen\CargarImagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadsPictures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -88,7 +88,7 @@ namespace Asp.Controllers
                 //conusltando de la tabla producto_iamgen las imagenes del producto
                 var imagen = db.producto_imagen.Where(e => e.id_producto == producto.id).FirstOrDefault();
                 //pasando la ruta a la vista
-                ViewBag.imagen = imagen.id_producto;
+                ViewBag.imagen = imagen.imagen;
                 return View(producto);
             }
         }
@@ -132,13 +132,13 @@ namespace Asp.Controllers
                     producto product = db.producto.Find(id);
                     db.producto.Remove(product);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("PagIndex");
                 }
             }
             catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error" + ex);
-                return View("PagIndex");
+                return View();
 
             }
         }
