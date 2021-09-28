@@ -39,22 +39,23 @@ namespace Asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create(producto product)
+        public ActionResult Create(producto producto)
         {
 
             if (!ModelState.IsValid)
                 return View();
             try
             {
-                using (var db = new inventario2021Entities())
-                {
-                    db.producto.Add(product);
-                    db.SaveChanges();
+                    using (var db = new inventario2021Entities())
+                    {
+                        
+                        db.producto.Add(producto);
+                        db.SaveChanges();
 
                     return RedirectToAction("PagIndex");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Error " + ex);
                 return View();
@@ -87,7 +88,7 @@ namespace Asp.Controllers
                 //conusltando de la tabla producto_iamgen las imagenes del producto
                 var imagen = db.producto_imagen.Where(e => e.id_producto == producto.id).FirstOrDefault();
                 //pasando la ruta a la vista
-                ViewBag.imagen = imagen.imagen;
+                ViewBag.imagen = imagen.id_producto;
                 return View(producto);
             }
         }
@@ -137,7 +138,8 @@ namespace Asp.Controllers
             catch(Exception ex)
             {
                 ModelState.AddModelError("", "Error" + ex);
-                return View();
+                return View("PagIndex");
+
             }
         }
 

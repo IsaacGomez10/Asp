@@ -7,6 +7,7 @@
 <p>
     @Html.ActionLink("Crear Nuevo Producto", "Create")
 </p>
+@Html.AntiForgeryToken()
 <table class="table table-striped">
     <tr>
         <th>
@@ -24,7 +25,9 @@
         <th>
             Proveedor
         </th>
-        <th></th>
+        <th>
+            Cargar Imagen
+        </th>
     </tr>
 
     @foreach (var producto in Model.Productos)
@@ -46,18 +49,19 @@
                 @Asp.Controllers.ProductoController.NombreProveedor(producto.id_proveedor)
             </td>
             <td>
-            @Html.ActionLink("Editar", "Edit", new { id = producto.id }) |
-            @Html.ActionLink("Detalles", "Details", new { id = producto.id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = producto.id }, new { @class = "linkDelete" })
+                @Html.ActionLink("Editar", "Edit", new { id = producto.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = producto.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = producto.id }, new { @class = "linkDelete" })
             </td>
         </tr>
     }
 
 </table>
+
 <div>
-@Html.ActionLink("Reporte de Producto", "Index", "Producto/Reporte") |
-@Html.ActionLink("Cargar Archivos", "Cargar") |
-@Html.ActionLink("Cargar Imagen de Producto", "CargarImagen", "ProductoImagen")
+    @Html.ActionLink("Reporte de Producto", "Index", "Producto/Reporte") |
+    @Html.ActionLink("Cargar Archivos", "Cargar") |
+    @Html.ActionLink("Cargar Imagen de Producto", "CargarImagen", "ProductoImagen")
 </div>
 @{ Html.RenderPartial("Paginador", Model);}
 @section scripts{

@@ -9,20 +9,14 @@
 @using (Html.BeginForm("CargarImagen", "ProductoImagen", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @*<div class="form-group">
-            <label class="control-label col-md-2" for="id_producto">Producto</label>
+    <div class="form-group">
+            <label class="control-label col-md-2" for="id_producto" name="producto" >Producto</label>
             <div class="col-md-10">
                 @Html.Action("ListaProductos")
                 @Html.ValidationMessageFor(model => model.producto_imagen, "", new { @class = "text-danger" })
                 <br />
             </div>
-        </div>*@
-    <div class="form-group">
-        <label class="control-label col-md-2">Producto</label>
-        <div class="col-md-10">
-            <input type="number" name="producto" class="form-control" />
         </div>
-    </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">Subir Imagen</label>
