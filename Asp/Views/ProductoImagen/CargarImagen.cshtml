@@ -10,19 +10,19 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
-        <label class="control-label col-md-2" for="id_producto">Producto</label>
-        <div class="col-md-10">
-            @Html.Action("ListaProductos")
-            <br />
+            <label class="control-label col-md-2" for="id_producto">Producto</label>
+            <div class="col-md-10">
+                @Html.Action("ListaProductos")
+                <br />
+            </div>
         </div>
-    </div>
 
     @*<div class="form-group">
-            <label class="control-label col-md-2">Producto</label>
-            <div class="col-md-10">
-                <input type="number" name="producto" class="form-control" />
-            </div>
-        </div>*@
+        <label class="control-label col-md-2">Producto</label>
+        <div class="col-md-10">
+            <input type="number" name="producto" class="form-control" />
+        </div>
+    </div>*@
 
     <div class="form-group">
         <label class="control-label col-md-2">Subir Imagen</label>

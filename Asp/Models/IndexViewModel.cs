@@ -19,5 +19,7 @@ namespace Asp.Models
 
         public List<producto_compra> ProductoCompra { get; set; }
 
+        public List<usuariorol> UsuarioRol { get; set; }
+
     }
 }

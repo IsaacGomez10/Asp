@@ -306,8 +306,8 @@
     <Content Include="Views\Cliente\PagIndex.cshtml" />
     <Content Include="Views\Producto\PagIndex.cshtml" />
     <Content Include="Views\ProductoCompra\PagIndex.cshtml" />
-    <Content Include="Views\ProductoImagen\CargarImagen.cshtml" />
     <Content Include="Views\ProductoImagen\ListaProductos.cshtml" />
+    <Content Include="Views\ProductoImagen\CargarImagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
